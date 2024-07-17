@@ -1,4 +1,4 @@
-use aho_corasick::AhoCorasick;
+use aho_corasick::{AhoCorasick, AhoCorasickBuilder};
 use lazy_static::lazy_static;
 use std::borrow::Cow;
 use std::ops::Range;
@@ -12,7 +12,9 @@ pub(crate) fn unescape(input: &str) -> Cow<str> {
     const HIGH_SURROGATES: Range<u16> = 0xd800..0xdc00;
     const LOW_SURROGATES: Range<u16> = 0xdc00..0xe000;
     lazy_static! {
-        static ref AC: AhoCorasick = AhoCorasick::new_auto_configured(PATTERNS);
+        static ref AC: AhoCorasick = AhoCorasickBuilder::new()
+            .build(PATTERNS)
+            .expect("must be able to build instance of aho-corasick");
     }
 
     let mut res = Cow::default();
@@ -22,7 +24,7 @@ pub(crate) fn unescape(input: &str) -> Cow<str> {
         res += &input[last_start..mat.start()];
         last_start = mat.end();
 
-        if let Some(repl) = REPLACEMENTS.get(mat.pattern()) {
+        if let Some(repl) = REPLACEMENTS.get(mat.pattern().as_usize()) {
             res += *repl;
         } else if mat.end() + 4 <= input.len() {
             // Handle \u
