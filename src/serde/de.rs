@@ -169,7 +169,7 @@ struct Deserializer<R> {
     current_field: Index,
     as_key: bool,
 }
-impl<'de, R> Deserializer<R>
+impl<R> Deserializer<R>
 where
     R: Read,
 {
@@ -935,9 +935,7 @@ mod tests {
         }
 
         let mut hm = LinkedHashMap::new();
-        let mut vec_sub = vec![];
-        vec_sub.push(Hocon::Integer(0));
-        vec_sub.push(Hocon::String(String::from("Hello")));
+        let vec_sub = vec![Hocon::Integer(0), Hocon::String(String::from("Hello"))];
         hm.insert(String::from("item"), Hocon::Array(vec_sub));
         let doc = Hocon::Hash(hm);
 
@@ -957,9 +955,7 @@ mod tests {
         }
 
         let mut hm = LinkedHashMap::new();
-        let mut vec_sub = vec![];
-        vec_sub.push(Hocon::Integer(0));
-        vec_sub.push(Hocon::String(String::from("Hello")));
+        let vec_sub = vec![Hocon::Integer(0), Hocon::String(String::from("Hello"))];
         hm.insert(String::from("item"), Hocon::Array(vec_sub));
         let doc = Hocon::Hash(hm);
 
@@ -1022,6 +1018,7 @@ mod tests {
         assert_eq!(res.expect("during test").get(&E::A).unwrap().s, 7);
     }
 
+    #[allow(clippy::enum_variant_names)]
     #[derive(Deserialize, Debug, PartialEq)]
     enum MyEnum {
         UnitVariant,
@@ -1070,9 +1067,7 @@ mod tests {
     #[test]
     fn deserialize_struct_enum() {
         let mut hm = LinkedHashMap::new();
-        let mut sub_vec = vec![];
-        sub_vec.push(Hocon::Integer(7));
-        sub_vec.push(Hocon::Boolean(false));
+        let sub_vec = vec![Hocon::Integer(7), Hocon::Boolean(false)];
         let mut variant_map = LinkedHashMap::new();
         variant_map.insert(String::from("TupleVariant"), Hocon::Array(sub_vec));
         hm.insert(String::from("item"), Hocon::Hash(variant_map));

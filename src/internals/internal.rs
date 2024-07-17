@@ -303,9 +303,8 @@ impl HoconInternal {
                         .rev()
                         .cloned()
                         .collect();
-                    let existing_array = concatenated_arrays
-                        .entry(concat_root.clone())
-                        .or_insert_with(HashMap::new);
+                    let existing_array =
+                        concatenated_arrays.entry(concat_root.clone()).or_default();
                     let nb_elems = existing_array.keys().len();
                     let idx = existing_array
                         .entry(HoconValue::String(item_id.clone()))
@@ -344,7 +343,7 @@ impl HoconInternal {
                         if let HoconValue::Integer(idx) = item {
                             concatenated_arrays
                                 .entry(checked_path.clone())
-                                .or_insert_with(HashMap::new)
+                                .or_default()
                                 .entry(HoconValue::Integer(idx))
                                 .or_insert(idx);
                         }

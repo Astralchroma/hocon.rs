@@ -751,32 +751,32 @@ mod tests {
 
     #[test]
     fn access_on_bytes_all_bytes_units() {
-        for unit in vec!["B", "b", "byte", "bytes"] {
+        for unit in ["B", "b", "byte", "bytes"] {
             let val = Hocon::Array(vec![Hocon::String(format!("8{}", unit))]);
             assert_eq!(dbg!(val)[0].as_bytes(), Some(8));
         }
 
-        for unit in vec!["kB", "kilobyte", "kilobytes"] {
+        for unit in ["kB", "kilobyte", "kilobytes"] {
             let val = Hocon::Array(vec![Hocon::String(format!("8{}", unit))]);
             assert_eq!(dbg!(val)[0].as_bytes(), Some(8 * 10u64.pow(3)));
         }
-        for unit in vec!["MB", "megabyte", "megabytes"] {
+        for unit in ["MB", "megabyte", "megabytes"] {
             let val = Hocon::Array(vec![Hocon::String(format!("8{}", unit))]);
             assert_eq!(dbg!(val)[0].as_bytes(), Some(8 * 10u64.pow(6)));
         }
-        for unit in vec!["GB", "gigabyte", "gigabytes"] {
+        for unit in ["GB", "gigabyte", "gigabytes"] {
             let val = Hocon::Array(vec![Hocon::String(format!("8{}", unit))]);
             assert_eq!(dbg!(val)[0].as_bytes(), Some(8 * 10u64.pow(9)));
         }
-        for unit in vec!["TB", "terabyte", "terabytes"] {
+        for unit in ["TB", "terabyte", "terabytes"] {
             let val = Hocon::Array(vec![Hocon::String(format!("8{}", unit))]);
             assert_eq!(dbg!(val)[0].as_bytes(), Some(8 * 10u64.pow(12)));
         }
-        for unit in vec!["PB", "petabyte", "petabytes"] {
+        for unit in ["PB", "petabyte", "petabytes"] {
             let val = Hocon::Array(vec![Hocon::String(format!("8{}", unit))]);
             assert_eq!(dbg!(val)[0].as_bytes(), Some(8 * 10u64.pow(15)));
         }
-        for unit in vec!["EB", "exabyte", "exabytes"] {
+        for unit in ["EB", "exabyte", "exabytes"] {
             let val = Hocon::Array(vec![Hocon::String(format!("8{}", unit))]);
             assert_eq!(dbg!(val)[0].as_bytes(), Some(8 * 10u64.pow(18)));
         }
@@ -790,27 +790,27 @@ mod tests {
         //     assert_eq!(dbg!(val)[0].as_bytes(), Some(8 * 10u64.pow(24)));
         // }
 
-        for unit in vec!["K", "k", "Ki", "KiB", "kibibyte", "kibibytes"] {
+        for unit in ["K", "k", "Ki", "KiB", "kibibyte", "kibibytes"] {
             let val = Hocon::Array(vec![Hocon::String(format!("8{}", unit))]);
             assert_eq!(dbg!(val)[0].as_bytes(), Some(8 * 2u64.pow(10)));
         }
-        for unit in vec!["M", "m", "Mi", "MiB", "mebibyte", "mebibytes"] {
+        for unit in ["M", "m", "Mi", "MiB", "mebibyte", "mebibytes"] {
             let val = Hocon::Array(vec![Hocon::String(format!("8{}", unit))]);
             assert_eq!(dbg!(val)[0].as_bytes(), Some(8 * 2u64.pow(20)));
         }
-        for unit in vec!["G", "g", "Gi", "GiB", "gibibyte", "gibibytes"] {
+        for unit in ["G", "g", "Gi", "GiB", "gibibyte", "gibibytes"] {
             let val = Hocon::Array(vec![Hocon::String(format!("8{}", unit))]);
             assert_eq!(dbg!(val)[0].as_bytes(), Some(8 * 2u64.pow(30)));
         }
-        for unit in vec!["T", "t", "Ti", "TiB", "tebibyte", "tebibytes"] {
+        for unit in ["T", "t", "Ti", "TiB", "tebibyte", "tebibytes"] {
             let val = Hocon::Array(vec![Hocon::String(format!("8{}", unit))]);
             assert_eq!(dbg!(val)[0].as_bytes(), Some(8 * 2u64.pow(40)));
         }
-        for unit in vec!["P", "p", "Pi", "PiB", "pebibyte", "pebibytes"] {
+        for unit in ["P", "p", "Pi", "PiB", "pebibyte", "pebibytes"] {
             let val = Hocon::Array(vec![Hocon::String(format!("8{}", unit))]);
             assert_eq!(dbg!(val)[0].as_bytes(), Some(8 * 2u64.pow(50)));
         }
-        for unit in vec!["E", "e", "Ei", "EiB", "exbibyte", "exbibytes"] {
+        for unit in ["E", "e", "Ei", "EiB", "exbibyte", "exbibytes"] {
             let val = Hocon::Array(vec![Hocon::String(format!("8{}", unit))]);
             assert_eq!(dbg!(val)[0].as_bytes(), Some(8 * 2u64.pow(60)));
         }
