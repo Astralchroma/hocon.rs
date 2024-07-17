@@ -2,7 +2,7 @@
 name = "hocon"
 version = "0.9.1-dev"
 authors = ["François Mockers <mockersf@gmail.com>"]
-edition = "2018"
+edition = "2021"
 description = "Reads HOCON configuration files"
 repository = "https://github.com/mockersf/hocon.rs"
 homepage = "https://github.com/mockersf/hocon.rs"
